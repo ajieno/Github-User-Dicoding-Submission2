@@ -10,10 +10,10 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_search"
         app:srcCompat="@drawable/ic_backprofile" />
 
     <ImageView
@@ -21,16 +21,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_user"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_github_black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_user"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="115dp"
         android:background="@drawable/rectangle_corner"
         android:paddingTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -61,4 +61,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/github_logo"
         app:layout_constraintTop_toTopOf="@+id/github_logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

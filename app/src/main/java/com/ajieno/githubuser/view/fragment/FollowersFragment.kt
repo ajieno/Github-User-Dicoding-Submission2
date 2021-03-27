@@ -1,5 +1,6 @@
 package com.ajieno.githubuser.view.fragment
 
+import android.nfc.NfcAdapter.EXTRA_DATA
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,7 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajieno.githubuser.R
+import com.ajieno.githubuser.model.FavoriteUser
 import com.ajieno.githubuser.model.User
+import com.ajieno.githubuser.view.DetailUserActivity
+import com.ajieno.githubuser.view.DetailUserActivity.Companion.EXTRA_NOTE
 import com.ajieno.githubuser.viewModel.ListFollowerAdapter
 import com.ajieno.githubuser.viewModel.ListFollowingAdapter
 import com.ajieno.githubuser.viewModel.followerFilterList
@@ -31,6 +35,9 @@ class FollowersFragment : Fragment() {
 
     private var listData: ArrayList<User> = ArrayList()
     private lateinit var adapter: ListFollowerAdapter
+    private var favorite: FavoriteUser? = null
+    private lateinit var dataUser: FavoriteUser
+    private lateinit var dataUser2: User
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +50,15 @@ class FollowersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = ListFollowerAdapter(listData)
         listData.clear()
-        val dataUser = activity!!.intent.getParcelableExtra(Extra) as User
-        getDataGit(dataUser.username.toString())
+
+        favorite = activity!!.intent.getParcelableExtra(DetailUserActivity.EXTRA_NOTE)
+        if (favorite != null) {
+            dataUser = activity!!.intent.getParcelableExtra(EXTRA_NOTE) as FavoriteUser
+            getDataGit(dataUser.username.toString())
+        } else {
+            dataUser2 = activity!!.intent.getParcelableExtra(Extra) as User
+            getDataGit(dataUser2.username.toString())
+        }
     }
 
     private fun getDataGit(id: String){
